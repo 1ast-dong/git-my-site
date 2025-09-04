@@ -1,28 +1,51 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app-container">
+    <Layout>
+      <template #left>
+        <div class="aside">
+          <SiteAside />
+        </div>
+      </template>
+      <template #default>
+        <RouterView />
+      </template>
+    </Layout>
+    <ToTop />
+    <!-- <AsyncComponent /> -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// const AsyncComponent = () => {
+//   return new Promise((resolve) => {
+//     setTimeout(async () => {
+//       const MyComp = await import("./MyComp");
+//       resolve(MyComp);
+//     }, 3000);
+//   });
+// };
 
+import Layout from "./components/Layout";
+import SiteAside from "./components/SiteAside";
+import ToTop from "./components/ToTop";
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Layout,
+    SiteAside,
+    ToTop,
+    // AsyncComponent,
+  },
+};
 </script>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="less" scoped>
+@import "~@/styles/mixin.less";
+.app-container {
+  .self-fill(fixed);
+}
+.aside {
+  width: 250px;
+  height: 100%;
 }
 </style>
+
